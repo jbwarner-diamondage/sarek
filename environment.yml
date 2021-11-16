@@ -20,7 +20,7 @@ dependencies:
   - bioconda::control-freec=11.6=he1b5a44_0
   - bioconda::ensembl-vep=99.2=pl526hecc5488_0
   - bioconda::fastqc=0.11.9=0
-  - bioconda::fgbio=1.1.0=0
+  - bioconda::fgbio=1.5.0=0
   - bioconda::freebayes=1.3.2=py27h49fb759_2
   - bioconda::gatk4-spark=4.1.7.0=0
   - bioconda::genesplicer=1.0=1

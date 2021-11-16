@@ -995,7 +995,7 @@ process CallMolecularConsensusReads {
     """
     mkdir tmp
 
-    fgbio --tmp-dir=${PWD}/tmp \
+    fgbio -Xmx8g -tmp-dir=${PWD}/tmp \
     CallMolecularConsensusReads \
     -i $groupedBamFile \
     -o ${idSample}_umi-consensus.bam \
