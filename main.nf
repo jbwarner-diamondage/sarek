@@ -1053,7 +1053,8 @@ process MapReads {
     // adjust mismatch penalty for tumor samples
     status = statusMap[idPatient, idSample]
     extra = status == 1 ? "-B 3" : ""
-    convertToFastq = hasExtension(inputFile1, "bam") ? "gatk --java-options -Xmx${task.memory.toGiga()}g SamToFastq --INPUT=${inputFile1} --FASTQ=/dev/stdout --INTERLEAVE=true --NON_PF=true | \\" : ""
+    //convertToFastq = hasExtension(inputFile1, "bam") ? "gatk --java-options -Xmx${task.memory.toGiga()}g SamToFastq --INPUT=${inputFile1} --FASTQ=/dev/stdout --INTERLEAVE=true --NON_PF=true | \\" : ""
+    convertToFastq = hasExtension(inputFile1, "bam") ? "gatk --java-options -Xms160g -Xmx160g -XX:-UseGCOverheadLimit -XX:-UseParallelGC SamToFastq --INPUT=${inputFile1} --FASTQ=/dev/stdout --INTERLEAVE=true --NON_PF=true --MAX_RECORDS_IN_RAM=5000000 | \\" : ""
     input = hasExtension(inputFile1, "bam") ? "-p /dev/stdin - 2> >(tee ${inputFile1}.bwa.stderr.log >&2)" : "${inputFile1} ${inputFile2}"
     aligner = params.aligner == "bwa-mem2" ? "bwa-mem2" : "bwa"
     """
